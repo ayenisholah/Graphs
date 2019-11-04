@@ -86,15 +86,17 @@ class Graph:
         beginning from starting_vertex.
         This should be done using recursion.
         """
+        # Set base case for when the visited is None and create an empty set
         if visited is None:
             visited = set()
         print(starting_vertex)
         visited.add(starting_vertex)
+        #
         for child_vertex in self.vertices[starting_vertex]:
+            # if the vertex is not in visited
             if child_vertex not in visited:
+                # Call the recursive function
                 self.dft_recursive(child_vertex, visited)
-
-
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -102,7 +104,29 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # create and empty queue and enqueue the starting vertex
+        q = Queue()
+        q.enqueue([starting_vertex])
+
+        # Create a set to store the visited vertices
+        visited = set()
+
+        # While the queue is not empty
+        while q.size() > 0:
+            path = q.dequeue()
+            vertex = path[-1]
+
+            # Check if vertex has been visited:
+            if vertex not in visited:
+                # Check if it's the destination vertex
+                if vertex == destination_vertex:
+                    return path
+                visited.add(vertex)
+                # Create new path
+                for next_vertex in self.vertices[vertex]:
+                    new_path = list(path)
+                    new_path.append(next_vertex)
+                    q.enqueue(new_path)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -110,7 +134,29 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        # create and empty stack and push the starting vertex
+        stack = Stack()
+        stack.push([starting_vertex])
+
+        # Create a set to store the visited vertices
+        visited = set()
+
+        # While the stack is not empty
+        while stack.size() > 0:
+            path = stack.pop()
+            vertex = path[-1]
+
+            # Check if vertex has been visited:
+            if vertex not in visited:
+                # Check if it's the destination vertex
+                if vertex == destination_vertex:
+                    return path
+                visited.add(vertex)
+                # Create new path
+                for next_vertex in self.vertices[vertex]:
+                    new_path = list(path)
+                    new_path.append(next_vertex)
+                    stack.push(new_path)
 
 
 if __name__ == '__main__':
