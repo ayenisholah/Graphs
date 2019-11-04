@@ -20,6 +20,14 @@ class Graph:
         """
         Add a directed edge to the graph.
         """
+        # Check if v1 and v2 exists in vertices list
+        if v1 in self.vertices and v2 in self.vertices:
+            # add v2 at v1 of vertices
+            self.vertices[v1].add(v2)
+        # Otherwise
+        else:
+            # Raise an error
+            raise KeyError("That vertex does not exists")
 
     def bft(self, starting_vertex):
         """
@@ -41,7 +49,6 @@ class Graph:
         beginning from starting_vertex.
         This should be done using recursion.
         """
-
 
     def bfs(self, starting_vertex, destination_vertex):
         """
