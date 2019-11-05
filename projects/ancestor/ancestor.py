@@ -46,7 +46,12 @@ class Graph:
 def earliest_ancestor(ancestors, starting_node):
     graph = Graph()
 
-    # add parents to graph
+    # load pairs to graph
     for parents in ancestors:
         graph.add_vertex(parents[0])
         graph.add_vertex(parents[1])
+
+    #   {1 : {3}, 2: {3}, 3: {6}, 4: {5, 8}, 5: {6, 7}, 6: {}, 7:{} 8: {9}, 9:{}, 10: {1}, 11: {8}}
+
+    # edges
+
